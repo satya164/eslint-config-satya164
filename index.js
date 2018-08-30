@@ -19,16 +19,16 @@ module.exports = {
   ],
 
   plugins: [
-    'babel',
-    'eslint-comments',
-    'flowtype',
-    'import',
-    'jest',
-    'json',
-    'markdown',
-    'prettier',
-    'react',
-    'react-native',
+    require.resolve('eslint-plugin-babel'),
+    require.resolve('eslint-plugin-eslint-comments'),
+    require.resolve('eslint-plugin-flowtype'),
+    require.resolve('eslint-plugin-import'),
+    require.resolve('eslint-plugin-jest'),
+    require.resolve('eslint-plugin-json'),
+    require.resolve('eslint-plugin-markdown'),
+    require.resolve('eslint-plugin-prettier'),
+    require.resolve('eslint-plugin-react'),
+    require.resolve('eslint-plugin-react-native'),
   ],
 
   rules: {
