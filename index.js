@@ -194,7 +194,7 @@ module.exports = {
 
   overrides: [
     {
-      files: ['*.tsx?'],
+      files: ['*.ts', '*.tsx'],
       parser: require.resolve('@typescript-eslint/parser'),
       plugins: ['@typescript-eslint/eslint-plugin'],
       rules: {
@@ -208,8 +208,15 @@ module.exports = {
     },
     {
       files: [
-        '**/__tests__/**/*.(js|tsx?)',
-        '**/?(*.)(spec|test).(js|tsx?)',
+        '*.spec.js',
+        '*.spec.ts',
+        '*.spec.tsx',
+        '*.test.js',
+        '*.test.ts',
+        '*.test.tsx',
+        '**/__tests__/**/*.js',
+        '**/__tests__/**/*.ts',
+        '**/__tests__/**/*.tsx',
       ],
       env: {
         jest: true,
