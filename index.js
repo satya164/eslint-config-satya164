@@ -28,17 +28,17 @@ module.exports = {
   ],
 
   plugins: [
-    'babel',
-    'eslint-comments',
-    'flowtype',
-    'import',
-    'jest',
-    'json',
-    'markdown',
-    'prettier',
-    'react',
-    'react-hooks',
-    'react-native',
+    require.resolve('eslint-plugin-babel'),
+    require.resolve('eslint-plugin-eslint-comments'),
+    require.resolve('eslint-plugin-flowtype'),
+    require.resolve('eslint-plugin-import'),
+    require.resolve('eslint-plugin-jest'),
+    require.resolve('eslint-plugin-json'),
+    require.resolve('eslint-plugin-markdown'),
+    require.resolve('eslint-plugin-prettier'),
+    require.resolve('eslint-plugin-react'),
+    require.resolve('eslint-plugin-react-hooks'),
+    require.resolve('eslint-plugin-react-native'),
   ],
 
   rules: {
@@ -120,6 +120,7 @@ module.exports = {
     'import/no-amd': 'error',
     'import/no-commonjs': 'error',
     'import/no-duplicates': 'error',
+    'import/no-extraneous-dependencies': 'error',
     'import/no-unresolved': 'error',
     'import/no-useless-path-segment': 'error',
 
@@ -194,11 +195,35 @@ module.exports = {
     ],
   },
 
-  overrides: {
-    files: ['**/__tests__/**/*.js', '**/?(*.)(spec|test).js'],
-    env: {
-      jest: true,
-      'jest/globals': true,
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      parser: require.resolve('@typescript-eslint/parser'),
+      plugins: [require.resolve('@typescript-eslint/eslint-plugin')],
+      rules: {
+        '@typescript-eslint/no-unused-vars': [
+          'error',
+          { argsIgnorePattern: '^_' },
+        ],
+        'no-dupe-class-members': 'off',
+        'no-unused-vars': 'off',
+      },
     },
-  },
+    {
+      files: [
+        '**/__tests__/**/*.(tsx|ts|js)',
+        '**/?(*.)(spec|test).(tsx|ts|js)',
+      ],
+      env: {
+        jest: true,
+        'jest/globals': true,
+      },
+      rules: {
+        'import/no-extraneous-dependencies': [
+          'error',
+          { devDependencies: true },
+        ],
+      },
+    },
+  ],
 };
