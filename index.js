@@ -88,7 +88,7 @@ module.exports = {
     'use-isnan': 'error',
 
     'babel/no-invalid-this': 'error',
-    'babel/no-unused-expressions': 'error',
+    'babel/no-unused-expressions': ['error', { allowShortCircuit: true }],
     'babel/valid-typeof': 'error',
 
     'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
@@ -106,7 +106,7 @@ module.exports = {
     'flowtype/no-existential-type': 'warn',
     'flowtype/no-primitive-constructor-types': 'error',
     'flowtype/no-types-missing-file-annotation': 'error',
-    'flowtype/no-unused-expressions': 'error',
+    'flowtype/no-unused-expressions': ['error', { allowShortCircuit: true }],
     'flowtype/require-types-at-top': 'error',
     'flowtype/require-valid-file-annotation': 'error',
     'flowtype/use-flow-type': 'error',
@@ -122,7 +122,6 @@ module.exports = {
     'import/no-duplicates': 'error',
     'import/no-extraneous-dependencies': 'error',
     'import/no-unresolved': 'error',
-    'import/no-useless-path-segment': 'error',
 
     'jest/consistent-test-it': ['error', { fn: 'it' }],
     'jest/no-disabled-tests': 'error',
@@ -140,7 +139,6 @@ module.exports = {
     'jest/valid-expect': 'error',
 
     'react/button-has-type': 'error',
-    'react/default-props-match-prop-types': 'error',
     'react/no-access-state-in-setstate': 'error',
     'react/no-danger': 'error',
     'react/no-danger-with-children': 'error',
@@ -158,7 +156,6 @@ module.exports = {
     'react/no-unescaped-entities': 'error',
     'react/no-unknown-property': 'error',
     'react/no-unused-prop-types': 'error',
-    'react/no-unused-state': 'error',
     'react/no-will-update-set-state': 'error',
     'react/prefer-es6-class': 'error',
     'react/react-in-jsx-scope': 'error',
@@ -197,7 +194,7 @@ module.exports = {
 
   overrides: [
     {
-      files: ['*.ts', '*.tsx'],
+      files: ['*.tsx?'],
       parser: require.resolve('@typescript-eslint/parser'),
       plugins: ['@typescript-eslint/eslint-plugin'],
       rules: {
@@ -211,8 +208,8 @@ module.exports = {
     },
     {
       files: [
-        '**/__tests__/**/*.(tsx|ts|js)',
-        '**/?(*.)(spec|test).(tsx|ts|js)',
+        '**/__tests__/**/*.(js|tsx?)',
+        '**/?(*.)(spec|test).(js|tsx?)',
       ],
       env: {
         jest: true,
