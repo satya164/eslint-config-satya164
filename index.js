@@ -1,6 +1,4 @@
 module.exports = {
-  parser: require.resolve('babel-eslint'),
-
   env: {
     es6: true,
   },
@@ -194,6 +192,10 @@ module.exports = {
 
   overrides: [
     {
+      files: ['*.js'],
+      parser: require.resolve('babel-eslint'),
+    },
+    {
       files: ['*.ts', '*.tsx'],
       parser: require.resolve('@typescript-eslint/parser'),
       plugins: ['@typescript-eslint/eslint-plugin'],
@@ -207,17 +209,7 @@ module.exports = {
       },
     },
     {
-      files: [
-        '*.spec.js',
-        '*.spec.ts',
-        '*.spec.tsx',
-        '*.test.js',
-        '*.test.ts',
-        '*.test.tsx',
-        '**/__tests__/**/*.js',
-        '**/__tests__/**/*.ts',
-        '**/__tests__/**/*.tsx',
-      ],
+      files: ['*.{spec,test}.{js,ts,tsx}', '**/__tests__/**/*.{js,ts,tsx}'],
       env: {
         jest: true,
         'jest/globals': true,
