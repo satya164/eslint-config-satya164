@@ -28,17 +28,17 @@ module.exports = {
   ],
 
   plugins: [
-    require.resolve('eslint-plugin-babel'),
-    require.resolve('eslint-plugin-eslint-comments'),
-    require.resolve('eslint-plugin-flowtype'),
-    require.resolve('eslint-plugin-import'),
-    require.resolve('eslint-plugin-jest'),
-    require.resolve('eslint-plugin-json'),
-    require.resolve('eslint-plugin-markdown'),
-    require.resolve('eslint-plugin-prettier'),
-    require.resolve('eslint-plugin-react'),
-    require.resolve('eslint-plugin-react-hooks'),
-    require.resolve('eslint-plugin-react-native'),
+    'babel',
+    'eslint-comments',
+    'flowtype',
+    'import',
+    'jest',
+    'json',
+    'markdown',
+    'prettier',
+    'react',
+    'react-hooks',
+    'react-native',
   ],
 
   rules: {
@@ -199,7 +199,7 @@ module.exports = {
     {
       files: ['*.ts', '*.tsx'],
       parser: require.resolve('@typescript-eslint/parser'),
-      plugins: [require.resolve('@typescript-eslint/eslint-plugin')],
+      plugins: ['@typescript-eslint/eslint-plugin'],
       rules: {
         '@typescript-eslint/no-unused-vars': [
           'error',
