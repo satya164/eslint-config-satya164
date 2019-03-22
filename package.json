@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-satya164",
-  "version": "2.3.4",
+  "version": "0.0.0",
   "description": "Personal ESLint Config of @satya164",
   "main": "index.js",
   "license": "MIT",
@@ -30,11 +30,16 @@
     "eslint-plugin-react-native": "^3.6.0"
   },
   "devDependencies": {
+    "conventional-changelog-cli": "^2.0.12",
     "eslint": "^5.15.3",
-    "prettier": "^1.16.4"
+    "prettier": "^1.16.4",
+    "release-it": "^10.3.1"
   },
   "peerDependencies": {
     "eslint": "*",
     "prettier": "*"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }
