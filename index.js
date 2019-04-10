@@ -207,6 +207,17 @@ module.exports = {
         'no-dupe-class-members': 'off',
         'no-unused-vars': 'off',
       },
+      settings: {
+        'import/extensions': ['.js', '.ts', '.tsx'],
+        'import/parsers': {
+          '@typescript-eslint/parser': ['.ts', '.tsx'],
+        },
+        'import/resolver': {
+          node: {
+            extensions: ['.js', '.ts', '.tsx'],
+          },
+        },
+      },
     },
     {
       files: ['*.{spec,test}.{js,ts,tsx}', '**/__tests__/**/*.{js,ts,tsx}'],
