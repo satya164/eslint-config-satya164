@@ -129,7 +129,6 @@ module.exports = {
     'jest/no-test-prefixes': 'error',
     'jest/no-test-return-statement': 'error',
     'jest/no-truthy-falsy': 'error',
-    'jest/prefer-expect-assertions': 'error',
     'jest/prefer-todo': 'error',
     'jest/require-tothrow-message': 'error',
     'jest/valid-describe': 'error',
