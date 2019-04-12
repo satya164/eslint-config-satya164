@@ -198,14 +198,6 @@ module.exports = {
       files: ['*.ts', '*.tsx'],
       parser: require.resolve('@typescript-eslint/parser'),
       plugins: ['@typescript-eslint/eslint-plugin'],
-      rules: {
-        '@typescript-eslint/no-unused-vars': [
-          'error',
-          { argsIgnorePattern: '^_' },
-        ],
-        'no-dupe-class-members': 'off',
-        'no-unused-vars': 'off',
-      },
       settings: {
         'import/extensions': ['.js', '.ts', '.tsx'],
         'import/parsers': {
@@ -216,6 +208,17 @@ module.exports = {
             extensions: ['.js', '.ts', '.tsx'],
           },
         },
+      },
+      rules: {
+        '@typescript-eslint/no-unused-vars': [
+          'error',
+          { argsIgnorePattern: '^_' },
+        ],
+
+        'no-dupe-class-members': 'off',
+        'no-unused-vars': 'off',
+
+        'import/named': 'off',
       },
     },
     {
