@@ -1,0 +1,38 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - "@satya164/auto-publish"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Use Yarn
+      run: |
+        curl -o- -L https://yarnpkg.com/install.sh | bash
+
+    - name: Install dependencies
+      run: |
+        yarn install --frozen-lockfile
+
+    - name: Publish to npm
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GIT_BRANCH: ${GITHUB_REF:11}
+      run: |
+        yarn semantic-release --branch @satya164/auto-publish
