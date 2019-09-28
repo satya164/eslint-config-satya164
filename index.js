@@ -31,8 +31,6 @@ module.exports = {
     'flowtype',
     'import',
     'jest',
-    'json',
-    'markdown',
     'prettier',
     'react',
     'react-hooks',
