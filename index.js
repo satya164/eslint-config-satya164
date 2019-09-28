@@ -121,7 +121,7 @@ module.exports = {
     'no-useless-constructor': 'error',
     'no-useless-escape': 'error',
     'no-useless-rename': 'error',
-    'no-with': 'warn',
+    'no-with': 'error',
     'require-yield': 'error',
     'unicode-bom': 'error',
     'use-isnan': 'error',
@@ -183,6 +183,7 @@ module.exports = {
     'jest/valid-expect': 'error',
 
     'react/button-has-type': 'error',
+    'react/display-name': 'error',
     'react/no-array-index-key': 'error',
     'react/no-access-state-in-setstate': 'error',
     'react/no-danger': 'error',
@@ -224,7 +225,6 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
 
     'react-native/no-unused-styles': 'error',
-    'react-native/no-inline-styles': 'error',
 
     'prettier/prettier': [
       'error',
