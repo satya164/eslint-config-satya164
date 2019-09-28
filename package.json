@@ -17,7 +17,7 @@
   },
   "scripts": {
     "release": "release-it",
-    "test": "eslint --ext '.jss,.ts,.tsx' tests/**"
+    "test": "eslint --ext '.js,.ts,.tsx' tests/**"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^2.3.1",
