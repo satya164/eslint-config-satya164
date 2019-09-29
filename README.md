@@ -51,4 +51,31 @@ To lint your files, you can add the following script to your `package.json`:
 }
 ```
 
+To show lint errors in your editor, you'll need to configure your editor. To configure [VSCode](https://code.visualstudio.com), add the following in `settings.json`:
+
+```json
+"eslint.validate": [
+  {
+    "language": "javascript",
+    "autoFix": true
+  },
+  {
+    "language": "javascriptreact",
+    "autoFix": true
+  },
+  {
+    "language": "typescript",
+    "autoFix": true
+  },
+  {
+    "language": "typescriptreact",
+    "autoFix": true
+  }
+],
+```
+
+On Mac OS, you can open `settings.json` file from `Code` > `Preferences` > `Settings` or via the keyboard shortcut <kbd>⌘,</kbd>.
+
+This config sets `autoFix` to `true` to automatically fix lint errors on save. You can set it to `false` if you don't want this behaviour.
+
 Happy linting 🎉
