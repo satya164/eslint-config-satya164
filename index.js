@@ -183,7 +183,6 @@ module.exports = {
     'jest/valid-expect': 'error',
 
     'react/button-has-type': 'error',
-    'react/display-name': 'error',
     'react/no-array-index-key': 'error',
     'react/no-access-state-in-setstate': 'error',
     'react/no-danger': 'error',
