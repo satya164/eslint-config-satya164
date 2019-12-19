@@ -150,15 +150,11 @@ module.exports = {
     'flowtype/require-valid-file-annotation': 'error',
     'flowtype/use-flow-type': 'error',
 
-    'import/default': 'error',
     'import/export': 'error',
     'import/extensions': ['error', { js: 'never', json: 'always' }],
     'import/imports-first': 'error',
-    'import/named': 'error',
-    'import/namespace': 'error',
     'import/no-amd': 'error',
     'import/no-commonjs': 'error',
-    'import/no-cycle': 'error',
     'import/no-duplicates': 'error',
     'import/no-extraneous-dependencies': 'error',
     'import/no-self-import': 'error',
@@ -240,6 +236,15 @@ module.exports = {
     {
       files: ['*.js'],
       parser: require.resolve('babel-eslint'),
+      rules: {
+        'import/default': 'error',
+        'import/named': 'error',
+        'import/namespace': 'error',
+        'import/no-named-as-default': 'error',
+        'import/no-named-as-default-member': 'error',
+        'import/no-cycle': 'error',
+        'import/no-deprecated': 'error',
+      }
     },
     {
       files: ['*.ts', '*.tsx'],
@@ -297,10 +302,6 @@ module.exports = {
         'no-unused-vars': 'off',
         'no-array-constructor': 'off',
         'no-use-before-define': 'off',
-
-        'import/named': 'off',
-        'import/default': 'off',
-        'import/namespace': 'off',
       },
     },
     {
