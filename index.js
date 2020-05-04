@@ -43,7 +43,6 @@ module.exports = {
     'default-case': ['error', { commentPattern: '^no default$' }],
     'for-direction': 'error',
     'getter-return': 'error',
-    'getter-return': 'error',
     'new-parens': 'error',
     'no-array-constructor': 'error',
     'no-caller': 'error',
