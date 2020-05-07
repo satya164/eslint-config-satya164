@@ -190,10 +190,11 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
-        tabWidth: 2,
-        useTabs: false,
+        quoteProps: 'consistent',
         singleQuote: true,
+        tabWidth: 2,
         trailingComma: 'es5',
+        useTabs: false,
       },
     ],
   },
