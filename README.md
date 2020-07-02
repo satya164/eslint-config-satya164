@@ -47,7 +47,7 @@ To lint your files, you can add the following script to your `package.json`:
 
 ```json
 "scripts": {
-  "lint": "eslint --ext '.js,.ts,.tsx' ."
+  "lint": "eslint \"**/*.{js,ts,tsx}\""
 }
 ```
 
