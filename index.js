@@ -286,6 +286,7 @@ module.exports = {
 
         'default-case': 'off',
         'no-dupe-class-members': 'off',
+        'no-undef': 'off',
         'no-unused-vars': 'off',
         'no-array-constructor': 'off',
         'no-use-before-define': 'off',
