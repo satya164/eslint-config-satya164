@@ -20,9 +20,7 @@ module.exports = {
   },
 
   extends: [
-    require.resolve('eslint-config-prettier'),
-    require.resolve('eslint-config-prettier/flowtype'),
-    require.resolve('eslint-config-prettier/react'),
+    require.resolve('eslint-config-prettier')
   ],
 
   plugins: [
