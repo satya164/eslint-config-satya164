@@ -200,7 +200,10 @@ module.exports = {
   overrides: [
     {
       files: ['*.js'],
-      parser: require.resolve('babel-eslint'),
+      parser: require.resolve('@babel/eslint-parser'),
+      parserOptions: {
+        requireConfigFile: false
+      },
       plugins: ['flowtype'],
       rules: {
         'flowtype/array-style-complex-type': ['error', 'verbose'],
