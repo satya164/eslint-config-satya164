@@ -1,0 +1,7 @@
+pre-commit:
+  parallel: true
+  commands:
+    test:
+      files: git diff --name-only @{push}
+      glob: "*.{js,ts,jsx,tsx}"
+      run: yarn test
