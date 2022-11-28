@@ -19,9 +19,7 @@ module.exports = {
     },
   },
 
-  extends: [
-    require.resolve('eslint-config-prettier')
-  ],
+  extends: [require.resolve('eslint-config-prettier')],
 
   plugins: [
     'babel',
@@ -121,7 +119,6 @@ module.exports = {
     'unicode-bom': 'error',
     'use-isnan': 'error',
 
-    'babel/no-invalid-this': 'error',
     'babel/no-unused-expressions': ['error', { allowShortCircuit: true }],
     'babel/valid-typeof': 'error',
 
@@ -202,7 +199,7 @@ module.exports = {
       files: ['*.js'],
       parser: require.resolve('@babel/eslint-parser'),
       parserOptions: {
-        requireConfigFile: false
+        requireConfigFile: false,
       },
       plugins: ['flowtype'],
       rules: {
@@ -316,10 +313,10 @@ module.exports = {
         'jest/no-jasmine-globals': 'error',
         'jest/no-test-prefixes': 'error',
         'jest/no-test-return-statement': 'error',
-        'jest/no-truthy-falsy': 'error',
+        'jest/prefer-to-be': 'error',
         'jest/prefer-todo': 'error',
         'jest/require-to-throw-message': 'error',
-        'jest/valid-describe': 'error',
+        'jest/valid-describe-callback': 'error',
         'jest/valid-expect-in-promise': 'error',
         'jest/valid-expect': 'error',
         'jest/valid-title': 'error',
