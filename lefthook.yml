@@ -2,6 +2,5 @@ pre-commit:
   parallel: true
   commands:
     test:
-      files: git diff --name-only @{push}
-      glob: "*.{js,ts,jsx,tsx}"
+      glob: "*.{json,js,jsx,ts,tsx}"
       run: yarn test
