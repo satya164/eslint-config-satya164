@@ -162,6 +162,12 @@ module.exports = {
       },
     },
     {
+      files: ['*.mjs'],
+      rules: {
+        'import/extensions': ['error', 'always'],
+      },
+    },
+    {
       files: ['*.ts', '*.tsx'],
       parser: require.resolve('@typescript-eslint/parser'),
       plugins: ['@typescript-eslint/eslint-plugin'],
