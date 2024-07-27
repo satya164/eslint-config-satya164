@@ -114,7 +114,7 @@ module.exports = {
     'import-x/no-extraneous-dependencies': 'error',
     'import-x/no-self-import': 'error',
     'import-x/no-useless-path-segments': 'error',
-    "import-x/no-relative-packages": "error",
+    'import-x/no-relative-packages': 'error',
 
     '@eslint-react/ensure-forward-ref-using-ref': 'error',
     '@eslint-react/no-array-index-key': 'error',
@@ -176,7 +176,7 @@ module.exports = {
 
   overrides: [
     {
-      files: ['*.js', "*.jsx", "*.cjs", "*.mjs"],
+      files: ['*.{js,jsx,cjs,mjs'],
       extends: ['plugin:import-x/recommended'],
       rules: {
         'import-x/no-cycle': 'error',
@@ -189,13 +189,13 @@ module.exports = {
       },
     },
     {
-      files: ['*.mjs', "*.mts"],
+      files: ['*.{mjs,mts}'],
       rules: {
         'import-x/extensions': ['error', 'always'],
       },
     },
     {
-      files: ['*.ts', '*.tsx'],
+      files: ['*.{ts,tsx}'],
       parser: require.resolve('@typescript-eslint/parser'),
       plugins: ['@typescript-eslint/eslint-plugin'],
       extends: [
@@ -275,11 +275,12 @@ module.exports = {
       },
     },
     {
-      files: ['*.config.js', '*.config.mjs', '.*rc.js', '.*rc.mjs'],
+      files: ['*.config.{ts,mts,js,cjs,mjs}', '.*rc.{ts,mts,js,cjs,mjs}'],
       env: {
         node: true,
       },
       rules: {
+        'import-x/no-default-export': 'off',
         'import-x/no-extraneous-dependencies': [
           'error',
           { devDependencies: true },
@@ -287,7 +288,7 @@ module.exports = {
       },
     },
     {
-      files: ['*.config.js', '*.config.cjs', '.*rc.js', '.*rc.cjs'],
+      files: ['*.config.{js,cjs}', '.*rc.{js,cjs}'],
       env: {
         node: true,
       },
