@@ -20,7 +20,7 @@ module.exports = {
   plugins: [
     '@eslint-community/eslint-comments',
     '@eslint-react',
-    'import',
+    'import-x',
     'prettier',
     'promise',
     'react-hooks',
@@ -30,8 +30,8 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@eslint-community/eslint-comments/recommended',
-    'plugin:promise/recommended',
     'plugin:@eslint-react/recommended-legacy',
+    'plugin:promise/recommended',
     'plugin:react-hooks/recommended',
     'prettier',
   ],
@@ -103,15 +103,19 @@ module.exports = {
     ],
     '@eslint-community/eslint-comments/no-unused-disable': 'error',
 
-    'import/export': 'error',
-    'import/extensions': ['error', { js: 'never', json: 'always' }],
-    'import/imports-first': 'error',
-    'import/no-amd': 'error',
-    'import/no-commonjs': 'error',
-    'import/no-duplicates': 'error',
-    'import/no-extraneous-dependencies': 'error',
-    'import/no-self-import': 'error',
-    'import/no-unresolved': 'error',
+    'import-x/export': 'error',
+    'import-x/extensions': ['error', { js: 'never', json: 'always' }],
+    'import-x/imports-first': 'error',
+    'import-x/no-absolute-path': 'error',
+    'import-x/no-amd': 'error',
+    'import-x/no-commonjs': 'error',
+    'import-x/no-duplicates': 'error',
+    'import-x/no-dynamic-require': 'error',
+    'import-x/no-empty-named-blocks': 'error',
+    'import-x/no-extraneous-dependencies': 'error',
+    'import-x/no-self-import': 'error',
+    'import-x/no-useless-path-segments': 'error',
+    "import-x/no-relative-packages": "error",
 
     '@eslint-react/ensure-forward-ref-using-ref': 'error',
     '@eslint-react/no-array-index-key': 'error',
@@ -173,22 +177,22 @@ module.exports = {
 
   overrides: [
     {
-      files: ['*.js', '*.jsx'],
-      extends: ['plugin:import/recommended'],
+      files: ['*.js', "*.jsx", "*.cjs", "*.mjs"],
+      extends: ['plugin:import-x/recommended'],
       rules: {
-        'import/default': 'error',
-        'import/named': 'error',
-        'import/namespace': 'error',
-        'import/no-named-as-default': 'error',
-        'import/no-named-as-default-member': 'error',
-        'import/no-cycle': 'error',
-        'import/no-deprecated': 'error',
+        'import-x/no-cycle': 'error',
+        'import-x/default': 'error',
+        'import-x/named': 'error',
+        'import-x/namespace': 'error',
+        'import-x/no-named-as-default': 'error',
+        'import-x/no-named-as-default-member': 'error',
+        'import-x/no-deprecated': 'error',
       },
     },
     {
-      files: ['*.mjs'],
+      files: ['*.mjs', "*.mts"],
       rules: {
-        'import/extensions': ['error', 'always'],
+        'import-x/extensions': ['error', 'always'],
       },
     },
     {
@@ -197,7 +201,7 @@ module.exports = {
       plugins: ['@typescript-eslint/eslint-plugin'],
       extends: [
         'plugin:@typescript-eslint/recommended',
-        'plugin:import/typescript',
+        'plugin:import-x/typescript',
       ],
       rules: {
         '@typescript-eslint/adjacent-overload-signatures': 'error',
@@ -255,7 +259,7 @@ module.exports = {
         'jest/globals': true,
       },
       rules: {
-        'import/no-extraneous-dependencies': [
+        'import-x/no-extraneous-dependencies': [
           'error',
           { devDependencies: true },
         ],
@@ -272,16 +276,24 @@ module.exports = {
       },
     },
     {
-      files: ['*.config.js', '.*rc.js'],
+      files: ['*.config.js', '*.config.mjs', '.*rc.js', '.*rc.mjs'],
       env: {
         node: true,
       },
       rules: {
-        'import/no-commonjs': 'off',
-        'import/no-extraneous-dependencies': [
+        'import-x/no-extraneous-dependencies': [
           'error',
           { devDependencies: true },
         ],
+      },
+    },
+    {
+      files: ['*.config.js', '*.config.cjs', '.*rc.js', '.*rc.cjs'],
+      env: {
+        node: true,
+      },
+      rules: {
+        'import-x/no-commonjs': 'off',
       },
     },
   ],
