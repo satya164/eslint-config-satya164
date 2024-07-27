@@ -18,18 +18,18 @@ module.exports = {
   },
 
   plugins: [
-    'eslint-comments',
-    'import',
-    'promise',
-    'prettier',
+    '@eslint-community/eslint-comments',
     '@eslint-react',
+    'import',
+    'prettier',
+    'promise',
     'react-hooks',
     'react-native',
   ],
 
   extends: [
     'eslint:recommended',
-    'plugin:eslint-comments/recommended',
+    'plugin:@eslint-community/eslint-comments/recommended',
     'plugin:promise/recommended',
     'plugin:@eslint-react/recommended-legacy',
     'plugin:react-hooks/recommended',
@@ -97,8 +97,11 @@ module.exports = {
     'require-yield': 'error',
     'unicode-bom': 'error',
 
-    'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
-    'eslint-comments/no-unused-disable': 'error',
+    '@eslint-community/eslint-comments/disable-enable-pair': [
+      'error',
+      { allowWholeFile: true },
+    ],
+    '@eslint-community/eslint-comments/no-unused-disable': 'error',
 
     'import/export': 'error',
     'import/extensions': ['error', { js: 'never', json: 'always' }],
