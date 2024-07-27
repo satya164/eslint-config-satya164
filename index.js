@@ -263,7 +263,7 @@ module.exports = {
           { devDependencies: true },
         ],
 
-        'jest/consistent-test-it': ['error', { fn: 'it' }],
+        'jest/consistent-test-it': ['error', { fn: 'test' }],
         'jest/expect-expect': 'error',
         'jest/no-disabled-tests': 'error',
         'jest/no-duplicate-hooks': 'error',
