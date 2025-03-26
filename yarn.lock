@@ -437,11 +437,6 @@
     string-ts "^2.2.1"
     ts-pattern "^5.6.2"
 
-"@eslint/compat@^1.2.7":
-  version "1.2.7"
-  resolved "https://registry.yarnpkg.com/@eslint/compat/-/compat-1.2.7.tgz#f1a890281631ad27530479420b743dd92626e819"
-  integrity sha512-xvv7hJE32yhegJ8xNAnb62ggiAwTYHBpUCWhRxEj/ksvgDJuSXfoDkBcRYaYNFiJ+jH0IE3K16hd+xXzhBgNbg==
-
 "@eslint/config-array@^0.19.2":
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/@eslint/config-array/-/config-array-0.19.2.tgz#3060b809e111abfc97adb0bb1172778b90cb46aa"
@@ -1129,7 +1124,7 @@
     natural-compare "^1.4.0"
     ts-api-utils "^2.0.1"
 
-"@typescript-eslint/parser@8.28.0", "@typescript-eslint/parser@^8.28.0":
+"@typescript-eslint/parser@8.28.0":
   version "8.28.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-8.28.0.tgz#85321707e8711c0e66a949ea228224af35f45c98"
   integrity sha512-LPcw1yHD3ToaDEoljFEfQ9j2xShY367h7FZ1sq5NJT9I3yj4LHer1Xd1yRSOdYy9BpsrxU7R+eoDokChYM53lQ==
@@ -2401,13 +2396,6 @@ eslint-import-resolver-typescript@^4.2.4:
     tinyglobby "^0.2.12"
     unrs-resolver "^1.3.1"
 
-eslint-plugin-babel@^5.3.1:
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-babel/-/eslint-plugin-babel-5.3.1.tgz#75a2413ffbf17e7be57458301c60291f2cfbf560"
-  integrity sha512-VsQEr6NH3dj664+EyxJwO4FCYm/00JhYb3Sk3ft8o+fpKuIfQ9TaW6uVUfvwMXHcf/lsnRIoyFPsLMyiWCSL/g==
-  dependencies:
-    eslint-rule-composer "^0.3.0"
-
 eslint-plugin-import-x@^4.9.3:
   version "4.9.3"
   resolved "https://registry.yarnpkg.com/eslint-plugin-import-x/-/eslint-plugin-import-x-4.9.3.tgz#29149ddd02aaccb010c9682532bd3c0080843dab"
@@ -2529,18 +2517,6 @@ eslint-plugin-react-naming-convention@1.38.0:
     string-ts "^2.2.1"
     ts-pattern "^5.6.2"
 
-eslint-plugin-react-native-globals@^0.1.1:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-native-globals/-/eslint-plugin-react-native-globals-0.1.2.tgz#ee1348bc2ceb912303ce6bdbd22e2f045ea86ea2"
-  integrity sha512-9aEPf1JEpiTjcFAmmyw8eiIXmcNZOqaZyHO77wgm0/dWfT/oxC1SrIq8ET38pMxHYrcB6Uew+TzUVsBeczF88g==
-
-eslint-plugin-react-native@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-native/-/eslint-plugin-react-native-5.0.0.tgz#2ee990ba4967c557183b31121578547fb5c02d5d"
-  integrity sha512-VyWlyCC/7FC/aONibOwLkzmyKg4j9oI8fzrk9WYNs4I8/m436JuOTAFwLvEn1CVvc7La4cPfbCyspP4OYpP52Q==
-  dependencies:
-    eslint-plugin-react-native-globals "^0.1.1"
-
 eslint-plugin-react-web-api@1.38.0:
   version "1.38.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-web-api/-/eslint-plugin-react-web-api-1.38.0.tgz#e9716317d17b9fb6c1f089b049dd8ce6dc3673ce"
@@ -2579,11 +2555,6 @@ eslint-plugin-react-x@1.38.0:
     is-immutable-type "^5.0.1"
     string-ts "^2.2.1"
     ts-pattern "^5.6.2"
-
-eslint-rule-composer@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-rule-composer/-/eslint-rule-composer-0.3.0.tgz#79320c927b0c5c0d3d3d2b76c8b4a488f25bbaf9"
-  integrity sha512-bt+Sh8CtDmn2OajxvNO+BX7Wn4CIWMpTRm3MaiKPCQcnnlm0CS2mhui6QaoeQugs+3Kj2ESKEEGJUdVafwhiCg==
 
 eslint-scope@^8.3.0:
   version "8.3.0"

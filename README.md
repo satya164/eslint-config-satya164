@@ -6,14 +6,15 @@ This is my personal ESLint config. I try to avoid rules which are purely stylist
 
 The config includes these plugins by default:
 
-- [@typescript-eslint/eslint-plugin](https://github.com/typescript-eslint/typescript-eslint)
-- [eslint-comments](https://github.com/mysticatea/eslint-plugin-eslint-comments)
-- [import](https://github.com/benmosher/eslint-plugin-import/issues)
-- [jest](https://github.com/jest-community/eslint-plugin-jest/issues)
+- [eslint-comments](https://eslint-community.github.io/eslint-plugin-eslint-comments/)
+- [import-x](https://github.com/un-ts/eslint-plugin-import-x)
+- [jest](https://github.com/jest-community/eslint-plugin-jest)
 - [prettier](https://github.com/prettier/eslint-plugin-prettier)
-- [react](https://github.com/yannickcr/eslint-plugin-react/issues)
-- [react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
-- [react-native](https://github.com/intellicode/eslint-plugin-react-native)
+- [promise](https://github.com/eslint-community/eslint-plugin-promise)
+- [react-hooks](https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks)
+- [react-hooks](https://reactjs.org/docs/hooks-rules.html)
+- [react](https://github.com/Rel1cx/eslint-react)
+- [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint)
 
 The config uses the `overrides` feature of ESLint to automatically adjust the config based on the filename. For example, typescript support is enabled for `.ts` and `.tsx` files, the `jest` environment is set for test files and more.
 
@@ -33,13 +34,20 @@ If you're using TypeScript, also install the TypeScript compiler:
 yarn add --dev typescript
 ```
 
-Now extend the config in `.eslintrc.json`:
+Now use the config in your config file:
 
-```json
-{
-  "extends": "satya164"
-}
+```js
+// eslint.config.mjs
+import satya164 from 'eslint-config-satya164';
+
+export default [
+  ...satya164,
+
+  // Rest of your config
+];
 ```
+
+Using the config requires ESLint 9's [flat config format](https://eslint.org/docs/latest/use/configure/configuration-file).
 
 To lint your files, you can add the following script to your `package.json`:
 
