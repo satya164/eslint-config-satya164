@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-satya164",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Personal ESLint Config of @satya164",
   "license": "MIT",
   "main": "index.mjs",
