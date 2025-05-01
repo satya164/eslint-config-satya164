@@ -1,6 +1,7 @@
 import comments from '@eslint-community/eslint-plugin-eslint-comments/configs';
 import react from '@eslint-react/eslint-plugin';
 import js from '@eslint/js';
+import * as tsResolver from 'eslint-import-resolver-typescript';
 import importx from 'eslint-plugin-import-x';
 import jest from 'eslint-plugin-jest';
 import prettier from 'eslint-plugin-prettier/recommended';
@@ -8,7 +9,6 @@ import promise from 'eslint-plugin-promise';
 import hooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
-import * as tsResolver from 'eslint-import-resolver-typescript';
 
 export default tseslint.config(tseslint.configs.recommended, [
   js.configs.recommended,
@@ -129,6 +129,7 @@ export default tseslint.config(tseslint.configs.recommended, [
       'import-x/no-relative-packages': 'error',
 
       '@eslint-react/ensure-forward-ref-using-ref': 'error',
+      '@eslint-react/naming-convention/context-name': 'off',
       '@eslint-react/no-array-index-key': 'error',
       '@eslint-react/no-children-count': 'off',
       '@eslint-react/no-children-for-each': 'off',
@@ -137,20 +138,23 @@ export default tseslint.config(tseslint.configs.recommended, [
       '@eslint-react/no-children-to-array': 'off',
       '@eslint-react/no-clone-element': 'off',
       '@eslint-react/no-comment-textnodes': 'error',
+      '@eslint-react/no-context-provider': 'off',
       '@eslint-react/no-create-ref': 'off',
       '@eslint-react/no-default-props': 'off',
+      '@eslint-react/no-forward-ref': 'off',
       '@eslint-react/no-implicit-key': 'error',
       '@eslint-react/no-missing-component-display-name': 'error',
       '@eslint-react/no-nested-components': 'error',
       '@eslint-react/no-set-state-in-component-did-mount': 'error',
       '@eslint-react/no-set-state-in-component-did-update': 'error',
       '@eslint-react/no-set-state-in-component-will-update': 'error',
-      '@eslint-react/no-useless-fragment': 'off',
       '@eslint-react/no-unsafe-component-will-mount': 'error',
       '@eslint-react/no-unsafe-component-will-receive-props': 'error',
       '@eslint-react/no-unsafe-component-will-update': 'error',
       '@eslint-react/no-unused-class-component-members': 'error',
       '@eslint-react/no-unused-state': 'error',
+      '@eslint-react/no-use-context': 'off',
+      '@eslint-react/no-useless-fragment': 'off',
 
       '@eslint-react/dom/no-children-in-void-dom-elements': 'error',
       '@eslint-react/dom/no-dangerously-set-innerhtml': 'error',
@@ -171,8 +175,8 @@ export default tseslint.config(tseslint.configs.recommended, [
 
       '@eslint-react/naming-convention/component-name': 'error',
 
-      'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'error',
+      'react-hooks/rules-of-hooks': 'error',
 
       'prettier/prettier': [
         'error',
