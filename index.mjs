@@ -1,22 +1,21 @@
 import comments from '@eslint-community/eslint-plugin-eslint-comments/configs';
-import react from '@eslint-react/eslint-plugin';
+import reactPlugin from '@eslint-react/eslint-plugin';
 import js from '@eslint/js';
+import vitestPlugin from '@vitest/eslint-plugin';
 import * as tsResolver from 'eslint-import-resolver-typescript';
-import importx from 'eslint-plugin-import-x';
-import jest from 'eslint-plugin-jest';
+import importX from 'eslint-plugin-import-x';
+import jestPlugin from 'eslint-plugin-jest';
 import prettier from 'eslint-plugin-prettier/recommended';
 import promise from 'eslint-plugin-promise';
 import hooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-export default tseslint.config(tseslint.configs.recommended, [
+export const recommended = tseslint.config(tseslint.configs.recommended, [
   js.configs.recommended,
   comments.recommended,
-  hooks.configs['recommended-latest'],
-  importx.flatConfigs.recommended,
+  importX.flatConfigs.recommended,
   promise.configs['flat/recommended'],
-  react.configs.recommended,
   prettier,
   {
     languageOptions: {
@@ -30,9 +29,6 @@ export default tseslint.config(tseslint.configs.recommended, [
     },
 
     settings: {
-      react: {
-        version: 'detect',
-      },
       'import-x/ignore': ['node_modules'],
     },
 
@@ -128,6 +124,150 @@ export default tseslint.config(tseslint.configs.recommended, [
       'import-x/no-useless-path-segments': 'error',
       'import-x/no-relative-packages': 'error',
 
+      'prettier/prettier': [
+        'error',
+        {
+          quoteProps: 'consistent',
+          singleQuote: true,
+          tabWidth: 2,
+          trailingComma: 'es5',
+          useTabs: false,
+        },
+      ],
+    },
+  },
+  {
+    files: ['**/*.{js,jsx,cjs,mjs'],
+
+    rules: {
+      'import-x/no-cycle': 'error',
+      'import-x/default': 'error',
+      'import-x/named': 'error',
+      'import-x/namespace': 'error',
+      'import-x/no-named-as-default': 'error',
+      'import-x/no-named-as-default-member': 'error',
+      'import-x/no-deprecated': 'error',
+    },
+  },
+  {
+    files: ['**/*.{mjs,mts}'],
+
+    rules: {
+      'import-x/extensions': ['error', 'always'],
+    },
+  },
+  {
+    ...importX.flatConfigs.typescript,
+
+    files: ['**/*.{ts,tsx}'],
+
+    settings: {
+      'import-x/resolver': {
+        name: 'typescript-resolver',
+        resolver: tsResolver,
+      },
+    },
+
+    rules: {
+      ...importX.flatConfigs.typescript.rules,
+
+      '@typescript-eslint/adjacent-overload-signatures': 'error',
+      '@typescript-eslint/array-type': 'error',
+      '@typescript-eslint/consistent-type-assertions': [
+        'error',
+        {
+          assertionStyle: 'as',
+        },
+      ],
+      '@typescript-eslint/no-dynamic-delete': 'error',
+      '@typescript-eslint/no-empty-interface': [
+        'error',
+        {
+          allowSingleExtends: true,
+        },
+      ],
+      '@typescript-eslint/no-extra-non-null-assertion': 'error',
+      '@typescript-eslint/no-extraneous-class': 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          vars: 'all',
+          args: 'after-used',
+          caughtErrors: 'none',
+          argsIgnorePattern: '^_',
+        },
+      ],
+      '@typescript-eslint/no-use-before-define': [
+        'error',
+        {
+          functions: false,
+          classes: false,
+          variables: false,
+          typedefs: false,
+        },
+      ],
+      '@typescript-eslint/no-useless-constructor': 'error',
+      '@typescript-eslint/prefer-for-of': 'error',
+      '@typescript-eslint/prefer-function-type': 'error',
+      '@typescript-eslint/prefer-namespace-keyword': 'error',
+      '@typescript-eslint/unified-signatures': 'error',
+
+      '@typescript-eslint/no-require-import': 'off',
+
+      'default-case': 'off',
+      'no-dupe-class-members': 'off',
+      'no-redeclare': 'off',
+      'no-undef': 'off',
+      'no-unused-vars': 'off',
+      'no-use-before-define': 'off',
+    },
+  },
+  {
+    files: ['**/*.config.{ts,mts,js,cjs,mjs}', '**/.*rc.{ts,mts,js,cjs,mjs}'],
+
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
+
+    rules: {
+      'import-x/no-default-export': 'off',
+
+      'import-x/no-extraneous-dependencies': [
+        'error',
+        {
+          devDependencies: true,
+        },
+      ],
+    },
+  },
+  {
+    files: ['**/*.config.{js,cjs}', '**/.*rc.{js,cjs}'],
+
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
+
+    rules: {
+      'import-x/no-commonjs': 'off',
+    },
+  },
+]);
+
+export const react = tseslint.config(
+  hooks.configs['recommended-latest'],
+  reactPlugin.configs.recommended,
+  {
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+
+    rules: {
       '@eslint-react/ensure-forward-ref-using-ref': 'error',
       '@eslint-react/naming-convention/context-name': 'off',
       '@eslint-react/no-array-index-key': 'error',
@@ -174,100 +314,6 @@ export default tseslint.config(tseslint.configs.recommended, [
       '@eslint-react/hooks-extra/prefer-use-state-lazy-initialization': 'error',
 
       '@eslint-react/naming-convention/component-name': 'error',
-
-      'react-hooks/exhaustive-deps': 'error',
-      'react-hooks/rules-of-hooks': 'error',
-
-      'prettier/prettier': [
-        'error',
-        {
-          quoteProps: 'consistent',
-          singleQuote: true,
-          tabWidth: 2,
-          trailingComma: 'es5',
-          useTabs: false,
-        },
-      ],
-    },
-  },
-  {
-    files: ['**/*.{js,jsx,cjs,mjs'],
-
-    rules: {
-      'import-x/no-cycle': 'error',
-      'import-x/default': 'error',
-      'import-x/named': 'error',
-      'import-x/namespace': 'error',
-      'import-x/no-named-as-default': 'error',
-      'import-x/no-named-as-default-member': 'error',
-      'import-x/no-deprecated': 'error',
-    },
-  },
-  {
-    files: ['**/*.{mjs,mts}'],
-
-    rules: {
-      'import-x/extensions': ['error', 'always'],
-    },
-  },
-  {
-    ...importx.flatConfigs.typescript,
-
-    files: ['**/*.{ts,tsx}'],
-
-    settings: {
-      'import-x/resolver': {
-        name: 'typescript-resolver',
-        resolver: tsResolver,
-      },
-    },
-
-    rules: {
-      ...importx.flatConfigs.typescript.rules,
-
-      '@typescript-eslint/adjacent-overload-signatures': 'error',
-      '@typescript-eslint/array-type': 'error',
-      '@typescript-eslint/consistent-type-assertions': [
-        'error',
-        {
-          assertionStyle: 'as',
-        },
-      ],
-      '@typescript-eslint/no-dynamic-delete': 'error',
-      '@typescript-eslint/no-empty-interface': [
-        'error',
-        {
-          allowSingleExtends: true,
-        },
-      ],
-      '@typescript-eslint/no-extra-non-null-assertion': 'error',
-      '@typescript-eslint/no-extraneous-class': 'error',
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          vars: 'all',
-          args: 'after-used',
-          caughtErrors: 'none',
-          argsIgnorePattern: '^_',
-        },
-      ],
-      '@typescript-eslint/no-use-before-define': [
-        'error',
-        {
-          functions: false,
-          classes: false,
-          variables: false,
-          typedefs: false,
-        },
-      ],
-      '@typescript-eslint/no-useless-constructor': 'error',
-      '@typescript-eslint/prefer-for-of': 'error',
-      '@typescript-eslint/prefer-function-type': 'error',
-      '@typescript-eslint/prefer-namespace-keyword': 'error',
-      '@typescript-eslint/unified-signatures': 'error',
-
-      '@typescript-eslint/no-require-import': 'off',
-
       '@eslint-react/naming-convention/filename-extension': [
         'error',
         {
@@ -275,84 +321,56 @@ export default tseslint.config(tseslint.configs.recommended, [
         },
       ],
 
-      'default-case': 'off',
-      'no-dupe-class-members': 'off',
-      'no-redeclare': 'off',
-      'no-undef': 'off',
-      'no-unused-vars': 'off',
-      'no-use-before-define': 'off',
-      'react/prop-types': 'off',
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'error',
+    },
+  }
+);
+
+export const vitest = tseslint.config(vitestPlugin.configs.recommended, {
+  files: ['**/*.{spec,test}.{js,ts,tsx}', '**/__tests__/**/*.{js,ts,tsx}'],
+
+  rules: {
+    'vitest/consistent-test-it': ['error', { fn: 'test' }],
+    'vitest/expect-expect': 'error',
+    'vitest/no-disabled-tests': 'error',
+    'vitest/no-duplicate-hooks': 'error',
+    'vitest/no-test-prefixes': 'error',
+    'vitest/no-test-return-statement': 'error',
+    'vitest/prefer-to-be': 'error',
+    'vitest/prefer-todo': 'error',
+    'vitest/require-to-throw-message': 'error',
+  },
+});
+
+export const jest = tseslint.config(jestPlugin.configs['flat/recommended'], {
+  files: ['**/*.{spec,test}.{js,ts,tsx}', '**/__tests__/**/*.{js,ts,tsx}'],
+
+  languageOptions: {
+    globals: {
+      ...globals.jest,
+      ...jestPlugin.environments.globals.globals,
     },
   },
-  {
-    ...jest.configs['flat/recommended'],
 
-    files: ['**/*.{spec,test}.{js,ts,tsx}', '**/__tests__/**/*.{js,ts,tsx}'],
+  rules: {
+    ...jestPlugin.configs['flat/recommended'].rules,
 
-    languageOptions: {
-      globals: {
-        ...globals.jest,
-        ...jest.environments.globals.globals,
+    'import-x/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: true,
       },
-    },
+    ],
 
-    rules: {
-      ...jest.configs['flat/recommended'].rules,
-
-      'import-x/no-extraneous-dependencies': [
-        'error',
-        {
-          devDependencies: true,
-        },
-      ],
-
-      'jest/consistent-test-it': [
-        'error',
-        {
-          fn: 'test',
-        },
-      ],
-      'jest/expect-expect': 'error',
-      'jest/no-disabled-tests': 'error',
-      'jest/no-duplicate-hooks': 'error',
-      'jest/no-test-prefixes': 'error',
-      'jest/no-test-return-statement': 'error',
-      'jest/prefer-to-be': 'error',
-      'jest/prefer-todo': 'error',
-      'jest/require-to-throw-message': 'error',
-    },
+    'jest/consistent-test-it': ['error', { fn: 'test' }],
+    'jest/expect-expect': 'error',
+    'jest/no-disabled-tests': 'error',
+    'jest/no-duplicate-hooks': 'error',
+    'jest/no-test-prefixes': 'error',
+    'jest/no-test-return-statement': 'error',
+    'jest/prefer-to-be': 'error',
+    'jest/prefer-todo': 'error',
+    'jest/require-to-throw-message': 'error',
   },
-  {
-    files: ['**/*.config.{ts,mts,js,cjs,mjs}', '**/.*rc.{ts,mts,js,cjs,mjs}'],
-
-    languageOptions: {
-      globals: {
-        ...globals.node,
-      },
-    },
-
-    rules: {
-      'import-x/no-default-export': 'off',
-
-      'import-x/no-extraneous-dependencies': [
-        'error',
-        {
-          devDependencies: true,
-        },
-      ],
-    },
-  },
-  {
-    files: ['**/*.config.{js,cjs}', '**/.*rc.{js,cjs}'],
-
-    languageOptions: {
-      globals: {
-        ...globals.node,
-      },
-    },
-
-    rules: {
-      'import-x/no-commonjs': 'off',
-    },
-  },
-]);
+});

@@ -38,13 +38,18 @@ Now use the config in your config file:
 
 ```js
 // eslint.config.mjs
-import satya164 from 'eslint-config-satya164';
+import { recommended, react, vitest } from 'eslint-config-satya164';
 
-export default [
-  ...satya164,
+export default {
+  extends: [
+    // The base config
+    recommended,
 
-  // Rest of your config
-];
+    // Optional configs for tools (i.e. react, vitest, jest)
+    react,
+    vitest,
+  ],
+};
 ```
 
 Using the config requires ESLint 9's [flat config format](https://eslint.org/docs/latest/use/configure/configuration-file).
