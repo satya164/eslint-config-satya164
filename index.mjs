@@ -269,6 +269,7 @@ export const react = tseslint.config(
 
     rules: {
       '@eslint-react/ensure-forward-ref-using-ref': 'error',
+      '@eslint-react/jsx-key-before-spread': 'error',
       '@eslint-react/naming-convention/context-name': 'off',
       '@eslint-react/no-array-index-key': 'error',
       '@eslint-react/no-children-count': 'off',
@@ -314,6 +315,7 @@ export const react = tseslint.config(
       '@eslint-react/hooks-extra/prefer-use-state-lazy-initialization': 'error',
 
       '@eslint-react/naming-convention/component-name': 'error',
+      '@eslint-react/naming-convention/context-name': 'off',
       '@eslint-react/naming-convention/filename-extension': [
         'error',
         {
