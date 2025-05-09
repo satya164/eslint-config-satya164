@@ -269,6 +269,7 @@ export const react = tseslint.config(
 
     rules: {
       '@eslint-react/ensure-forward-ref-using-ref': 'error',
+      '@eslint-react/jsx-key-before-spread': 'error',
       '@eslint-react/no-array-index-key': 'error',
       '@eslint-react/no-children-count': 'off',
       '@eslint-react/no-children-for-each': 'off',
@@ -277,20 +278,23 @@ export const react = tseslint.config(
       '@eslint-react/no-children-to-array': 'off',
       '@eslint-react/no-clone-element': 'off',
       '@eslint-react/no-comment-textnodes': 'error',
+      '@eslint-react/no-context-provider': 'off',
       '@eslint-react/no-create-ref': 'off',
       '@eslint-react/no-default-props': 'off',
+      '@eslint-react/no-forward-ref': 'off',
       '@eslint-react/no-implicit-key': 'error',
       '@eslint-react/no-missing-component-display-name': 'error',
       '@eslint-react/no-nested-components': 'error',
       '@eslint-react/no-set-state-in-component-did-mount': 'error',
       '@eslint-react/no-set-state-in-component-did-update': 'error',
       '@eslint-react/no-set-state-in-component-will-update': 'error',
-      '@eslint-react/no-useless-fragment': 'off',
       '@eslint-react/no-unsafe-component-will-mount': 'error',
       '@eslint-react/no-unsafe-component-will-receive-props': 'error',
       '@eslint-react/no-unsafe-component-will-update': 'error',
       '@eslint-react/no-unused-class-component-members': 'error',
       '@eslint-react/no-unused-state': 'error',
+      '@eslint-react/no-use-context': 'off',
+      '@eslint-react/no-useless-fragment': 'off',
 
       '@eslint-react/dom/no-children-in-void-dom-elements': 'error',
       '@eslint-react/dom/no-dangerously-set-innerhtml': 'error',
@@ -310,6 +314,7 @@ export const react = tseslint.config(
       '@eslint-react/hooks-extra/prefer-use-state-lazy-initialization': 'error',
 
       '@eslint-react/naming-convention/component-name': 'error',
+      '@eslint-react/naming-convention/context-name': 'off',
       '@eslint-react/naming-convention/filename-extension': [
         'error',
         {
