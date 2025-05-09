@@ -1,22 +1,21 @@
 import comments from '@eslint-community/eslint-plugin-eslint-comments/configs';
-import react from '@eslint-react/eslint-plugin';
+import reactPlugin from '@eslint-react/eslint-plugin';
 import js from '@eslint/js';
-import importx from 'eslint-plugin-import-x';
-import jest from 'eslint-plugin-jest';
+import vitestPlugin from '@vitest/eslint-plugin';
+import * as tsResolver from 'eslint-import-resolver-typescript';
+import importX from 'eslint-plugin-import-x';
+import jestPlugin from 'eslint-plugin-jest';
 import prettier from 'eslint-plugin-prettier/recommended';
 import promise from 'eslint-plugin-promise';
 import hooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
-import * as tsResolver from 'eslint-import-resolver-typescript';
 
-export default tseslint.config(tseslint.configs.recommended, [
+export const recommended = tseslint.config(tseslint.configs.recommended, [
   js.configs.recommended,
   comments.recommended,
-  hooks.configs['recommended-latest'],
-  importx.flatConfigs.recommended,
+  importX.flatConfigs.recommended,
   promise.configs['flat/recommended'],
-  react.configs.recommended,
   prettier,
   {
     languageOptions: {
@@ -30,9 +29,6 @@ export default tseslint.config(tseslint.configs.recommended, [
     },
 
     settings: {
-      react: {
-        version: 'detect',
-      },
       'import-x/ignore': ['node_modules'],
     },
 
@@ -128,52 +124,6 @@ export default tseslint.config(tseslint.configs.recommended, [
       'import-x/no-useless-path-segments': 'error',
       'import-x/no-relative-packages': 'error',
 
-      '@eslint-react/ensure-forward-ref-using-ref': 'error',
-      '@eslint-react/no-array-index-key': 'error',
-      '@eslint-react/no-children-count': 'off',
-      '@eslint-react/no-children-for-each': 'off',
-      '@eslint-react/no-children-map': 'off',
-      '@eslint-react/no-children-only': 'off',
-      '@eslint-react/no-children-to-array': 'off',
-      '@eslint-react/no-clone-element': 'off',
-      '@eslint-react/no-comment-textnodes': 'error',
-      '@eslint-react/no-create-ref': 'off',
-      '@eslint-react/no-default-props': 'off',
-      '@eslint-react/no-implicit-key': 'error',
-      '@eslint-react/no-missing-component-display-name': 'error',
-      '@eslint-react/no-nested-components': 'error',
-      '@eslint-react/no-set-state-in-component-did-mount': 'error',
-      '@eslint-react/no-set-state-in-component-did-update': 'error',
-      '@eslint-react/no-set-state-in-component-will-update': 'error',
-      '@eslint-react/no-useless-fragment': 'off',
-      '@eslint-react/no-unsafe-component-will-mount': 'error',
-      '@eslint-react/no-unsafe-component-will-receive-props': 'error',
-      '@eslint-react/no-unsafe-component-will-update': 'error',
-      '@eslint-react/no-unused-class-component-members': 'error',
-      '@eslint-react/no-unused-state': 'error',
-
-      '@eslint-react/dom/no-children-in-void-dom-elements': 'error',
-      '@eslint-react/dom/no-dangerously-set-innerhtml': 'error',
-      '@eslint-react/dom/no-dangerously-set-innerhtml-with-children': 'error',
-      '@eslint-react/dom/no-find-dom-node': 'error',
-      '@eslint-react/dom/no-missing-button-type': 'error',
-      '@eslint-react/dom/no-namespace': 'error',
-      '@eslint-react/dom/no-render-return-value': 'error',
-      '@eslint-react/dom/no-script-url': 'error',
-      '@eslint-react/dom/no-unsafe-iframe-sandbox': 'error',
-
-      '@eslint-react/hooks-extra/ensure-custom-hooks-using-other-hooks':
-        'error',
-      '@eslint-react/hooks-extra/no-direct-set-state-in-use-effect': 'error',
-      '@eslint-react/hooks-extra/no-direct-set-state-in-use-layout-effect':
-        'error',
-      '@eslint-react/hooks-extra/prefer-use-state-lazy-initialization': 'error',
-
-      '@eslint-react/naming-convention/component-name': 'error',
-
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'error',
-
       'prettier/prettier': [
         'error',
         {
@@ -207,7 +157,7 @@ export default tseslint.config(tseslint.configs.recommended, [
     },
   },
   {
-    ...importx.flatConfigs.typescript,
+    ...importX.flatConfigs.typescript,
 
     files: ['**/*.{ts,tsx}'],
 
@@ -219,7 +169,7 @@ export default tseslint.config(tseslint.configs.recommended, [
     },
 
     rules: {
-      ...importx.flatConfigs.typescript.rules,
+      ...importX.flatConfigs.typescript.rules,
 
       '@typescript-eslint/adjacent-overload-signatures': 'error',
       '@typescript-eslint/array-type': 'error',
@@ -264,58 +214,12 @@ export default tseslint.config(tseslint.configs.recommended, [
 
       '@typescript-eslint/no-require-import': 'off',
 
-      '@eslint-react/naming-convention/filename-extension': [
-        'error',
-        {
-          allow: 'always',
-        },
-      ],
-
       'default-case': 'off',
       'no-dupe-class-members': 'off',
       'no-redeclare': 'off',
       'no-undef': 'off',
       'no-unused-vars': 'off',
       'no-use-before-define': 'off',
-      'react/prop-types': 'off',
-    },
-  },
-  {
-    ...jest.configs['flat/recommended'],
-
-    files: ['**/*.{spec,test}.{js,ts,tsx}', '**/__tests__/**/*.{js,ts,tsx}'],
-
-    languageOptions: {
-      globals: {
-        ...globals.jest,
-        ...jest.environments.globals.globals,
-      },
-    },
-
-    rules: {
-      ...jest.configs['flat/recommended'].rules,
-
-      'import-x/no-extraneous-dependencies': [
-        'error',
-        {
-          devDependencies: true,
-        },
-      ],
-
-      'jest/consistent-test-it': [
-        'error',
-        {
-          fn: 'test',
-        },
-      ],
-      'jest/expect-expect': 'error',
-      'jest/no-disabled-tests': 'error',
-      'jest/no-duplicate-hooks': 'error',
-      'jest/no-test-prefixes': 'error',
-      'jest/no-test-return-statement': 'error',
-      'jest/prefer-to-be': 'error',
-      'jest/prefer-todo': 'error',
-      'jest/require-to-throw-message': 'error',
     },
   },
   {
@@ -352,3 +256,117 @@ export default tseslint.config(tseslint.configs.recommended, [
     },
   },
 ]);
+
+export const react = tseslint.config(
+  hooks.configs['recommended-latest'],
+  reactPlugin.configs.recommended,
+  {
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+
+    rules: {
+      '@eslint-react/ensure-forward-ref-using-ref': 'error',
+      '@eslint-react/no-array-index-key': 'error',
+      '@eslint-react/no-children-count': 'off',
+      '@eslint-react/no-children-for-each': 'off',
+      '@eslint-react/no-children-map': 'off',
+      '@eslint-react/no-children-only': 'off',
+      '@eslint-react/no-children-to-array': 'off',
+      '@eslint-react/no-clone-element': 'off',
+      '@eslint-react/no-comment-textnodes': 'error',
+      '@eslint-react/no-create-ref': 'off',
+      '@eslint-react/no-default-props': 'off',
+      '@eslint-react/no-implicit-key': 'error',
+      '@eslint-react/no-missing-component-display-name': 'error',
+      '@eslint-react/no-nested-components': 'error',
+      '@eslint-react/no-set-state-in-component-did-mount': 'error',
+      '@eslint-react/no-set-state-in-component-did-update': 'error',
+      '@eslint-react/no-set-state-in-component-will-update': 'error',
+      '@eslint-react/no-useless-fragment': 'off',
+      '@eslint-react/no-unsafe-component-will-mount': 'error',
+      '@eslint-react/no-unsafe-component-will-receive-props': 'error',
+      '@eslint-react/no-unsafe-component-will-update': 'error',
+      '@eslint-react/no-unused-class-component-members': 'error',
+      '@eslint-react/no-unused-state': 'error',
+
+      '@eslint-react/dom/no-children-in-void-dom-elements': 'error',
+      '@eslint-react/dom/no-dangerously-set-innerhtml': 'error',
+      '@eslint-react/dom/no-dangerously-set-innerhtml-with-children': 'error',
+      '@eslint-react/dom/no-find-dom-node': 'error',
+      '@eslint-react/dom/no-missing-button-type': 'error',
+      '@eslint-react/dom/no-namespace': 'error',
+      '@eslint-react/dom/no-render-return-value': 'error',
+      '@eslint-react/dom/no-script-url': 'error',
+      '@eslint-react/dom/no-unsafe-iframe-sandbox': 'error',
+
+      '@eslint-react/hooks-extra/ensure-custom-hooks-using-other-hooks':
+        'error',
+      '@eslint-react/hooks-extra/no-direct-set-state-in-use-effect': 'error',
+      '@eslint-react/hooks-extra/no-direct-set-state-in-use-layout-effect':
+        'error',
+      '@eslint-react/hooks-extra/prefer-use-state-lazy-initialization': 'error',
+
+      '@eslint-react/naming-convention/component-name': 'error',
+      '@eslint-react/naming-convention/filename-extension': [
+        'error',
+        {
+          allow: 'always',
+        },
+      ],
+
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'error',
+    },
+  }
+);
+
+export const vitest = tseslint.config(vitestPlugin.configs.recommended, {
+  files: ['**/*.{spec,test}.{js,ts,tsx}', '**/__tests__/**/*.{js,ts,tsx}'],
+
+  rules: {
+    'vitest/consistent-test-it': ['error', { fn: 'test' }],
+    'vitest/expect-expect': 'error',
+    'vitest/no-disabled-tests': 'error',
+    'vitest/no-duplicate-hooks': 'error',
+    'vitest/no-test-prefixes': 'error',
+    'vitest/no-test-return-statement': 'error',
+    'vitest/prefer-to-be': 'error',
+    'vitest/prefer-todo': 'error',
+    'vitest/require-to-throw-message': 'error',
+  },
+});
+
+export const jest = tseslint.config(jestPlugin.configs['flat/recommended'], {
+  files: ['**/*.{spec,test}.{js,ts,tsx}', '**/__tests__/**/*.{js,ts,tsx}'],
+
+  languageOptions: {
+    globals: {
+      ...globals.jest,
+      ...jestPlugin.environments.globals.globals,
+    },
+  },
+
+  rules: {
+    ...jestPlugin.configs['flat/recommended'].rules,
+
+    'import-x/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: true,
+      },
+    ],
+
+    'jest/consistent-test-it': ['error', { fn: 'test' }],
+    'jest/expect-expect': 'error',
+    'jest/no-disabled-tests': 'error',
+    'jest/no-duplicate-hooks': 'error',
+    'jest/no-test-prefixes': 'error',
+    'jest/no-test-return-statement': 'error',
+    'jest/prefer-to-be': 'error',
+    'jest/prefer-todo': 'error',
+    'jest/require-to-throw-message': 'error',
+  },
+});
