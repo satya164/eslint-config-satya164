@@ -16,7 +16,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "release": "release-it",
+    "release": "release-it --only-version",
     "test": "eslint --ext '.js,.ts,.tsx' __tests__/**"
   },
   "dependencies": {
