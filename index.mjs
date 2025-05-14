@@ -33,7 +33,7 @@ export const recommended = tseslint.config(tseslint.configs.recommended, [
     },
 
     rules: {
-      eqeqeq: ['error', 'smart'],
+      'eqeqeq': ['error', 'smart'],
       'array-callback-return': 'error',
       'default-case': [
         'error',
@@ -271,7 +271,14 @@ export const react = tseslint.config(
     rules: {
       '@eslint-react/ensure-forward-ref-using-ref': 'error',
       '@eslint-react/jsx-key-before-spread': 'error',
+      '@eslint-react/naming-convention/component-name': 'error',
       '@eslint-react/naming-convention/context-name': 'off',
+      '@eslint-react/naming-convention/filename-extension': [
+        'error',
+        {
+          allow: 'always',
+        },
+      ],
       '@eslint-react/no-array-index-key': 'error',
       '@eslint-react/no-children-count': 'off',
       '@eslint-react/no-children-for-each': 'off',
@@ -315,15 +322,6 @@ export const react = tseslint.config(
         'error',
       '@eslint-react/hooks-extra/prefer-use-state-lazy-initialization': 'error',
 
-      '@eslint-react/naming-convention/component-name': 'error',
-      '@eslint-react/naming-convention/context-name': 'off',
-      '@eslint-react/naming-convention/filename-extension': [
-        'error',
-        {
-          allow: 'always',
-        },
-      ],
-
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'error',
     },
@@ -343,6 +341,7 @@ export const typechecked = tseslint.config(
 
     rules: {
       '@typescript-eslint/consistent-type-exports': 'error',
+      '@typescript-eslint/no-base-to-string': 'off',
       '@typescript-eslint/no-unnecessary-type-conversion': 'error',
       '@typescript-eslint/no-unsafe-type-assertion': 'error',
       '@typescript-eslint/promise-function-async': 'error',
