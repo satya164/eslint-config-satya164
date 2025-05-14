@@ -38,19 +38,51 @@ Now use the config in your config file:
 
 ```js
 // eslint.config.mjs
+import { defineConfig } from 'eslint/config';
 import { recommended, react, vitest } from 'eslint-config-satya164';
 
-export default {
-  extends: [
-    // The base config
-    recommended,
+export default defineConfig(
+  // The base config
+  recommended,
 
-    // Optional configs for tools (i.e. react, vitest, jest)
-    react,
-    vitest,
-  ],
-};
+  // Optional configs for tools (i.e. react, vitest, jest)
+  react,
+  vitest,
+
+  {
+    // Your additional config here
+  }
+);
 ```
+
+You can also enable type-aware rules:
+
+```js
+// eslint.config.mjs
+import { defineConfig } from 'eslint/config';
+import { recommended, typechecked } from 'eslint-config-satya164';
+
+export default defineConfig(
+  // The base config
+  recommended,
+
+  // Type-aware rules
+  typechecked,
+
+  {
+    languageOptions: {
+      // Needed for type-aware rules
+      parserOptions: {
+        project: true,
+        // Path to folder containing tsconfig.json
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+  },
+);
+```
+
+Also see [Typed Linting](https://typescript-eslint.io/troubleshooting/typed-linting) docs for more details.
 
 Using the config requires ESLint 9's [flat config format](https://eslint.org/docs/latest/use/configure/configuration-file).
 

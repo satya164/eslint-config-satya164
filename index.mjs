@@ -120,9 +120,12 @@ export const recommended = tseslint.config(tseslint.configs.recommended, [
       'import-x/no-duplicates': 'error',
       'import-x/no-empty-named-blocks': 'error',
       'import-x/no-extraneous-dependencies': 'error',
+      'import-x/no-unresolved': 'off',
       'import-x/no-self-import': 'error',
       'import-x/no-useless-path-segments': 'error',
       'import-x/no-relative-packages': 'error',
+
+      '@typescript-eslint/no-require-import': 'off',
 
       'prettier/prettier': [
         'error',
@@ -153,7 +156,7 @@ export const recommended = tseslint.config(tseslint.configs.recommended, [
     files: ['**/*.{mjs,mts}'],
 
     rules: {
-      'import-x/extensions': ['error', 'always'],
+      'import-x/extensions': ['error', 'ignorePackages'],
     },
   },
   {
@@ -211,8 +214,6 @@ export const recommended = tseslint.config(tseslint.configs.recommended, [
       '@typescript-eslint/prefer-function-type': 'error',
       '@typescript-eslint/prefer-namespace-keyword': 'error',
       '@typescript-eslint/unified-signatures': 'error',
-
-      '@typescript-eslint/no-require-import': 'off',
 
       'default-case': 'off',
       'no-dupe-class-members': 'off',
@@ -325,6 +326,29 @@ export const react = tseslint.config(
 
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'error',
+    },
+  }
+);
+
+export const typechecked = tseslint.config(
+  tseslint.configs.strictTypeCheckedOnly,
+  {
+    files: ['**/*.{ts,tsx}'],
+
+    languageOptions: {
+      parserOptions: {
+        project: true,
+      },
+    },
+
+    rules: {
+      '@typescript-eslint/consistent-type-exports': 'error',
+      '@typescript-eslint/no-unnecessary-type-conversion': 'error',
+      '@typescript-eslint/no-unsafe-type-assertion': 'error',
+      '@typescript-eslint/promise-function-async': 'error',
+      '@typescript-eslint/require-array-sort-compare': 'error',
+      '@typescript-eslint/strict-boolean-expressions': 'error',
+      '@typescript-eslint/switch-exhaustiveness-check': 'error',
     },
   }
 );
