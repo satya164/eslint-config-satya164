@@ -348,6 +348,12 @@ export const typechecked = tseslint.config(
       '@typescript-eslint/require-array-sort-compare': 'error',
       '@typescript-eslint/strict-boolean-expressions': 'error',
       '@typescript-eslint/switch-exhaustiveness-check': 'error',
+      '@typescript-eslint/no-unnecessary-condition': [
+        'error',
+        {
+          allowConstantLoopConditions: 'only-allowed-literals',
+        },
+      ],
     },
   }
 );
