@@ -11,7 +11,7 @@ import hooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-export const recommended = tseslint.config(tseslint.configs.recommended, [
+export const recommended = tseslint.config(
   js.configs.recommended,
   comments.recommended,
   importX.flatConfigs.recommended,
@@ -160,9 +160,9 @@ export const recommended = tseslint.config(tseslint.configs.recommended, [
     },
   },
   {
-    ...importX.flatConfigs.typescript,
-
     files: ['**/*.{ts,tsx}'],
+
+    extends: [tseslint.configs.recommended, importX.flatConfigs.typescript],
 
     settings: {
       'import-x/resolver': {
@@ -172,8 +172,6 @@ export const recommended = tseslint.config(tseslint.configs.recommended, [
     },
 
     rules: {
-      ...importX.flatConfigs.typescript.rules,
-
       '@typescript-eslint/adjacent-overload-signatures': 'error',
       '@typescript-eslint/array-type': 'error',
       '@typescript-eslint/consistent-type-assertions': [
@@ -255,8 +253,8 @@ export const recommended = tseslint.config(tseslint.configs.recommended, [
     rules: {
       'import-x/no-commonjs': 'off',
     },
-  },
-]);
+  }
+);
 
 export const react = tseslint.config(
   hooks.configs['recommended-latest'],
@@ -328,35 +326,34 @@ export const react = tseslint.config(
   }
 );
 
-export const typechecked = tseslint.config(
-  tseslint.configs.strictTypeCheckedOnly,
-  {
-    files: ['**/*.{ts,tsx}'],
+export const typechecked = tseslint.config({
+  files: ['**/*.{ts,tsx}'],
 
-    languageOptions: {
-      parserOptions: {
-        project: true,
+  extends: [tseslint.configs.strictTypeCheckedOnly],
+
+  languageOptions: {
+    parserOptions: {
+      project: true,
+    },
+  },
+
+  rules: {
+    '@typescript-eslint/consistent-type-exports': 'error',
+    '@typescript-eslint/no-base-to-string': 'off',
+    '@typescript-eslint/no-unnecessary-type-conversion': 'error',
+    '@typescript-eslint/no-unsafe-type-assertion': 'error',
+    '@typescript-eslint/promise-function-async': 'error',
+    '@typescript-eslint/require-array-sort-compare': 'error',
+    '@typescript-eslint/strict-boolean-expressions': 'error',
+    '@typescript-eslint/switch-exhaustiveness-check': 'error',
+    '@typescript-eslint/no-unnecessary-condition': [
+      'error',
+      {
+        allowConstantLoopConditions: 'only-allowed-literals',
       },
-    },
-
-    rules: {
-      '@typescript-eslint/consistent-type-exports': 'error',
-      '@typescript-eslint/no-base-to-string': 'off',
-      '@typescript-eslint/no-unnecessary-type-conversion': 'error',
-      '@typescript-eslint/no-unsafe-type-assertion': 'error',
-      '@typescript-eslint/promise-function-async': 'error',
-      '@typescript-eslint/require-array-sort-compare': 'error',
-      '@typescript-eslint/strict-boolean-expressions': 'error',
-      '@typescript-eslint/switch-exhaustiveness-check': 'error',
-      '@typescript-eslint/no-unnecessary-condition': [
-        'error',
-        {
-          allowConstantLoopConditions: 'only-allowed-literals',
-        },
-      ],
-    },
-  }
-);
+    ],
+  },
+});
 
 export const vitest = tseslint.config(vitestPlugin.configs.recommended, {
   files: ['**/*.{spec,test}.{js,ts,tsx}', '**/__tests__/**/*.{js,ts,tsx}'],
