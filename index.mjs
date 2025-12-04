@@ -137,7 +137,7 @@ export const recommended = tseslint.config(
       'import-x/no-cycle': 'error',
       'import-x/default': 'error',
       'import-x/named': 'error',
-      'import-x/namespace': 'error',
+      'import-x/namespace': ['error', { allowComputed: true }],
       'import-x/no-named-as-default': 'error',
       'import-x/no-named-as-default-member': 'error',
       'import-x/no-deprecated': 'error',
@@ -203,6 +203,8 @@ export const recommended = tseslint.config(
       '@typescript-eslint/prefer-function-type': 'error',
       '@typescript-eslint/prefer-namespace-keyword': 'error',
       '@typescript-eslint/unified-signatures': 'error',
+
+      'import-x/namespace': ['error', { allowComputed: true }],
 
       'default-case': 'off',
       'no-dupe-class-members': 'off',
