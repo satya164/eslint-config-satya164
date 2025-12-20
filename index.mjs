@@ -33,7 +33,7 @@ export const recommended = tseslint.config(
     },
 
     rules: {
-      'eqeqeq': ['error', 'smart'],
+      eqeqeq: ['error', 'smart'],
       'array-callback-return': 'error',
       'default-case': [
         'error',
@@ -151,7 +151,7 @@ export const recommended = tseslint.config(
     },
   },
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ['**/*.{ts,mts,tsx}'],
 
     extends: [tseslint.configs.recommended, importX.flatConfigs.typescript],
 
@@ -320,7 +320,7 @@ export const react = tseslint.config(
 );
 
 export const typechecked = tseslint.config({
-  files: ['**/*.{ts,tsx}'],
+  files: ['**/*.{ts,mts,tsx}'],
 
   extends: [tseslint.configs.strictTypeCheckedOnly],
 
@@ -349,7 +349,10 @@ export const typechecked = tseslint.config({
 });
 
 export const vitest = tseslint.config(vitestPlugin.configs.recommended, {
-  files: ['**/*.{spec,test}.{js,ts,tsx}', '**/__tests__/**/*.{js,ts,tsx}'],
+  files: [
+    '**/*.{spec,test}.{js,ts,mts,tsx}',
+    '**/__tests__/**/*.{js,ts,mts,tsx}',
+  ],
 
   rules: {
     'vitest/consistent-test-it': ['error', { fn: 'test' }],
@@ -365,7 +368,10 @@ export const vitest = tseslint.config(vitestPlugin.configs.recommended, {
 });
 
 export const jest = tseslint.config(jestPlugin.configs['flat/recommended'], {
-  files: ['**/*.{spec,test}.{js,ts,tsx}', '**/__tests__/**/*.{js,ts,tsx}'],
+  files: [
+    '**/*.{spec,test}.{js,ts,mts,tsx}',
+    '**/__tests__/**/*.{js,ts,mts,tsx}',
+  ],
 
   languageOptions: {
     globals: {
