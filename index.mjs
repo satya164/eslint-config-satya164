@@ -114,16 +114,21 @@ export const recommended = tseslint.config(
       'import-x/export': 'error',
       'import-x/extensions': ['error', { js: 'never', json: 'always' }],
       'import-x/imports-first': 'error',
+      'import-x/namespace': ['error', { allowComputed: true }],
       'import-x/no-absolute-path': 'error',
       'import-x/no-amd': 'error',
       'import-x/no-commonjs': 'error',
+      'import-x/no-cycle': 'error',
+      'import-x/no-deprecated': 'error',
       'import-x/no-duplicates': 'error',
       'import-x/no-empty-named-blocks': 'error',
       'import-x/no-extraneous-dependencies': 'error',
-      'import-x/no-unresolved': 'off',
-      'import-x/no-self-import': 'error',
-      'import-x/no-useless-path-segments': 'error',
+      'import-x/no-named-as-default-member': 'error',
+      'import-x/no-named-as-default': 'error',
       'import-x/no-relative-packages': 'error',
+      'import-x/no-self-import': 'error',
+      'import-x/no-unresolved': 'off',
+      'import-x/no-useless-path-segments': 'error',
 
       '@typescript-eslint/no-require-import': 'off',
 
@@ -134,13 +139,8 @@ export const recommended = tseslint.config(
     files: ['**/*.{js,jsx,cjs,mjs'],
 
     rules: {
-      'import-x/no-cycle': 'error',
       'import-x/default': 'error',
       'import-x/named': 'error',
-      'import-x/namespace': ['error', { allowComputed: true }],
-      'import-x/no-named-as-default': 'error',
-      'import-x/no-named-as-default-member': 'error',
-      'import-x/no-deprecated': 'error',
     },
   },
   {
@@ -203,8 +203,6 @@ export const recommended = tseslint.config(
       '@typescript-eslint/prefer-function-type': 'error',
       '@typescript-eslint/prefer-namespace-keyword': 'error',
       '@typescript-eslint/unified-signatures': 'error',
-
-      'import-x/namespace': ['error', { allowComputed: true }],
 
       'default-case': 'off',
       'no-dupe-class-members': 'off',
