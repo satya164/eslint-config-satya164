@@ -2,6 +2,7 @@ import comments from '@eslint-community/eslint-plugin-eslint-comments/configs';
 import reactPlugin from '@eslint-react/eslint-plugin';
 import js from '@eslint/js';
 import vitestPlugin from '@vitest/eslint-plugin';
+import { defineConfig } from 'eslint/config';
 import * as tsResolver from 'eslint-import-resolver-typescript';
 import importX from 'eslint-plugin-import-x';
 import jestPlugin from 'eslint-plugin-jest';
@@ -11,7 +12,7 @@ import hooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-export const recommended = tseslint.config(
+export const recommended = defineConfig(
   js.configs.recommended,
   comments.recommended,
   importX.flatConfigs.recommended,
@@ -83,6 +84,9 @@ export const recommended = tseslint.config(
       'no-shadow-restricted-names': 'error',
       'no-template-curly-in-string': 'error',
       'no-throw-literal': 'error',
+      'no-unassigned-vars': 'error',
+      'no-unmodified-loop-condition': 'error',
+      'no-unreachable-loop': 'error',
       'no-unused-labels': 'error',
       'no-unused-private-class-members': 'error',
       'no-use-before-define': [
@@ -96,6 +100,7 @@ export const recommended = tseslint.config(
       'no-useless-computed-key': 'error',
       'no-useless-concat': 'error',
       'no-useless-constructor': 'error',
+      'no-useless-assignment': 'error',
       'no-useless-escape': 'error',
       'no-useless-rename': 'error',
       'no-with': 'error',
@@ -130,13 +135,15 @@ export const recommended = tseslint.config(
       'import-x/no-unresolved': 'off',
       'import-x/no-useless-path-segments': 'error',
 
+      'promise/no-multiple-resolved': 'error',
+
       '@typescript-eslint/no-require-import': 'off',
 
       'prettier/prettier': 'error',
     },
   },
   {
-    files: ['**/*.{js,jsx,cjs,mjs'],
+    files: ['**/*.{js,jsx,cjs,mjs}'],
 
     rules: {
       'import-x/default': 'error',
@@ -187,6 +194,7 @@ export const recommended = tseslint.config(
           args: 'after-used',
           caughtErrors: 'none',
           argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
         },
       ],
       '@typescript-eslint/no-use-before-define': [
@@ -247,7 +255,7 @@ export const recommended = tseslint.config(
   }
 );
 
-export const react = tseslint.config(
+export const react = defineConfig(
   hooks.configs['recommended-latest'],
   reactPlugin.configs.recommended,
   {
@@ -317,7 +325,7 @@ export const react = tseslint.config(
   }
 );
 
-export const typechecked = tseslint.config({
+export const typechecked = defineConfig({
   files: ['**/*.{ts,mts,tsx}'],
 
   extends: [tseslint.configs.strictTypeCheckedOnly],
@@ -346,7 +354,7 @@ export const typechecked = tseslint.config({
   },
 });
 
-export const vitest = tseslint.config(vitestPlugin.configs.recommended, {
+export const vitest = defineConfig(vitestPlugin.configs.recommended, {
   files: [
     '**/*.{spec,test}.{js,ts,mts,tsx}',
     '**/__tests__/**/*.{js,ts,mts,tsx}',
@@ -361,11 +369,12 @@ export const vitest = tseslint.config(vitestPlugin.configs.recommended, {
     'vitest/no-test-return-statement': 'error',
     'vitest/prefer-to-be': 'error',
     'vitest/prefer-todo': 'error',
+    'vitest/require-awaited-expect-poll': 'error',
     'vitest/require-to-throw-message': 'error',
   },
 });
 
-export const jest = tseslint.config(jestPlugin.configs['flat/recommended'], {
+export const jest = defineConfig(jestPlugin.configs['flat/recommended'], {
   files: [
     '**/*.{spec,test}.{js,ts,mts,tsx}',
     '**/__tests__/**/*.{js,ts,mts,tsx}',
