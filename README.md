@@ -23,13 +23,7 @@ Prettier is used for formatting.
 First, install the required packages:
 
 ```sh
-yarn add --dev prettier eslint eslint-config-satya164
-```
-
-If you're using TypeScript, also install the TypeScript compiler:
-
-```sh
-yarn add --dev typescript
+yarn add --dev prettier eslint typescript eslint-config-satya164
 ```
 
 Now use the config in your config file:
