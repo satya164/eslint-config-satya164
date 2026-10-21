@@ -8,7 +8,6 @@ import importX from 'eslint-plugin-import-x';
 import jestPlugin from 'eslint-plugin-jest';
 import prettier from 'eslint-plugin-prettier/recommended';
 import promise from 'eslint-plugin-promise';
-import hooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -19,6 +18,10 @@ export const recommended = defineConfig(
   promise.configs['flat/recommended'],
   prettier,
   {
+    linterOptions: {
+      reportUnusedDisableDirectives: 'error',
+    },
+
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -135,7 +138,12 @@ export const recommended = defineConfig(
       'import-x/no-unresolved': 'off',
       'import-x/no-useless-path-segments': 'error',
 
+      'promise/no-callback-in-promise': 'error',
       'promise/no-multiple-resolved': 'error',
+      'promise/no-nesting': 'error',
+      'promise/no-promise-in-callback': 'error',
+      'promise/no-return-in-finally': 'error',
+      'promise/valid-params': 'error',
 
       '@typescript-eslint/no-require-import': 'off',
 
@@ -255,75 +263,68 @@ export const recommended = defineConfig(
   }
 );
 
-export const react = defineConfig(
-  hooks.configs['recommended-latest'],
-  reactPlugin.configs.recommended,
-  {
-    settings: {
-      react: {
-        version: 'detect',
-      },
+export const react = defineConfig(reactPlugin.configs.recommended, {
+  settings: {
+    react: {
+      version: 'detect',
     },
+  },
 
-    rules: {
-      '@eslint-react/ensure-forward-ref-using-ref': 'error',
-      '@eslint-react/jsx-key-before-spread': 'error',
-      '@eslint-react/naming-convention/component-name': 'error',
-      '@eslint-react/naming-convention/context-name': 'off',
-      '@eslint-react/naming-convention/filename-extension': [
-        'error',
-        {
-          allow: 'always',
-        },
-      ],
-      '@eslint-react/no-array-index-key': 'error',
-      '@eslint-react/no-children-count': 'off',
-      '@eslint-react/no-children-for-each': 'off',
-      '@eslint-react/no-children-map': 'off',
-      '@eslint-react/no-children-only': 'off',
-      '@eslint-react/no-children-to-array': 'off',
-      '@eslint-react/no-clone-element': 'off',
-      '@eslint-react/no-comment-textnodes': 'error',
-      '@eslint-react/no-context-provider': 'off',
-      '@eslint-react/no-create-ref': 'off',
-      '@eslint-react/no-default-props': 'off',
-      '@eslint-react/no-forward-ref': 'off',
-      '@eslint-react/no-implicit-key': 'error',
-      '@eslint-react/no-missing-component-display-name': 'error',
-      '@eslint-react/no-nested-components': 'error',
-      '@eslint-react/no-set-state-in-component-did-mount': 'error',
-      '@eslint-react/no-set-state-in-component-did-update': 'error',
-      '@eslint-react/no-set-state-in-component-will-update': 'error',
-      '@eslint-react/no-unsafe-component-will-mount': 'error',
-      '@eslint-react/no-unsafe-component-will-receive-props': 'error',
-      '@eslint-react/no-unsafe-component-will-update': 'error',
-      '@eslint-react/no-unused-class-component-members': 'error',
-      '@eslint-react/no-unused-state': 'error',
-      '@eslint-react/no-use-context': 'off',
-      '@eslint-react/no-useless-fragment': 'off',
+  rules: {
+    '@eslint-react/exhaustive-deps': 'error',
+    '@eslint-react/jsx-no-children-prop': 'error',
+    '@eslint-react/jsx-no-comment-textnodes': 'error',
+    '@eslint-react/jsx-no-key-after-spread': 'error',
+    '@eslint-react/jsx-no-leaked-dollar': 'error',
+    '@eslint-react/jsx-no-leaked-semicolon': 'error',
+    '@eslint-react/jsx-no-namespace': 'error',
+    '@eslint-react/naming-convention-context-name': 'off',
+    '@eslint-react/naming-convention-id-name': 'off',
+    '@eslint-react/naming-convention-ref-name': 'off',
+    '@eslint-react/no-array-index-key': 'error',
+    '@eslint-react/no-children-count': 'off',
+    '@eslint-react/no-children-for-each': 'off',
+    '@eslint-react/no-children-map': 'off',
+    '@eslint-react/no-children-only': 'off',
+    '@eslint-react/no-children-to-array': 'off',
+    '@eslint-react/no-clone-element': 'off',
+    '@eslint-react/no-context-provider': 'off',
+    '@eslint-react/no-create-ref': 'off',
+    '@eslint-react/no-forward-ref': 'off',
+    '@eslint-react/no-missing-component-display-name': 'error',
+    '@eslint-react/no-nested-component-definitions': 'error',
+    '@eslint-react/no-set-state-in-component-did-mount': 'error',
+    '@eslint-react/no-set-state-in-component-did-update': 'error',
+    '@eslint-react/no-set-state-in-component-will-update': 'error',
+    '@eslint-react/no-unnecessary-use-prefix': 'error',
+    '@eslint-react/no-unsafe-component-will-mount': 'error',
+    '@eslint-react/no-unsafe-component-will-receive-props': 'error',
+    '@eslint-react/no-unsafe-component-will-update': 'error',
+    '@eslint-react/no-unused-class-component-members': 'error',
+    '@eslint-react/no-unused-state': 'error',
+    '@eslint-react/no-use-context': 'off',
+    '@eslint-react/purity': 'error',
+    '@eslint-react/rules-of-hooks': 'error',
+    '@eslint-react/set-state-in-effect': 'error',
+    '@eslint-react/use-state': ['error', { enforceSetterName: false }],
 
-      '@eslint-react/dom/no-children-in-void-dom-elements': 'error',
-      '@eslint-react/dom/no-dangerously-set-innerhtml': 'error',
-      '@eslint-react/dom/no-dangerously-set-innerhtml-with-children': 'error',
-      '@eslint-react/dom/no-find-dom-node': 'error',
-      '@eslint-react/dom/no-missing-button-type': 'error',
-      '@eslint-react/dom/no-namespace': 'error',
-      '@eslint-react/dom/no-render-return-value': 'error',
-      '@eslint-react/dom/no-script-url': 'error',
-      '@eslint-react/dom/no-unsafe-iframe-sandbox': 'error',
+    '@eslint-react/dom-no-dangerously-set-innerhtml': 'error',
+    '@eslint-react/dom-no-dangerously-set-innerhtml-with-children': 'error',
+    '@eslint-react/dom-no-find-dom-node': 'error',
+    '@eslint-react/dom-no-missing-button-type': 'error',
+    '@eslint-react/dom-no-render-return-value': 'error',
+    '@eslint-react/dom-no-script-url': 'error',
+    '@eslint-react/dom-no-unsafe-iframe-sandbox': 'error',
+    '@eslint-react/dom-no-void-elements-with-children': 'error',
 
-      '@eslint-react/hooks-extra/ensure-custom-hooks-using-other-hooks':
-        'error',
-      '@eslint-react/hooks-extra/no-direct-set-state-in-use-effect': 'error',
-      '@eslint-react/hooks-extra/no-direct-set-state-in-use-layout-effect':
-        'error',
-      '@eslint-react/hooks-extra/prefer-use-state-lazy-initialization': 'error',
-
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'error',
-    },
-  }
-);
+    '@eslint-react/web-api-no-leaked-event-listener': 'error',
+    '@eslint-react/web-api-no-leaked-fetch': 'error',
+    '@eslint-react/web-api-no-leaked-intersection-observer': 'error',
+    '@eslint-react/web-api-no-leaked-interval': 'error',
+    '@eslint-react/web-api-no-leaked-resize-observer': 'error',
+    '@eslint-react/web-api-no-leaked-timeout': 'error',
+  },
+});
 
 export const typechecked = defineConfig({
   files: ['**/*.{ts,mts,tsx}'],
@@ -354,11 +355,13 @@ export const typechecked = defineConfig({
   },
 });
 
-export const vitest = defineConfig(vitestPlugin.configs.recommended, {
+export const vitest = defineConfig({
   files: [
     '**/*.{spec,test}.{js,ts,mts,tsx}',
     '**/__tests__/**/*.{js,ts,mts,tsx}',
   ],
+
+  extends: [vitestPlugin.configs.recommended],
 
   rules: {
     'vitest/consistent-test-it': ['error', { fn: 'test' }],
@@ -374,11 +377,13 @@ export const vitest = defineConfig(vitestPlugin.configs.recommended, {
   },
 });
 
-export const jest = defineConfig(jestPlugin.configs['flat/recommended'], {
+export const jest = defineConfig({
   files: [
     '**/*.{spec,test}.{js,ts,mts,tsx}',
     '**/__tests__/**/*.{js,ts,mts,tsx}',
   ],
+
+  extends: [jestPlugin.configs['flat/recommended']],
 
   languageOptions: {
     globals: {
@@ -388,8 +393,6 @@ export const jest = defineConfig(jestPlugin.configs['flat/recommended'], {
   },
 
   rules: {
-    ...jestPlugin.configs['flat/recommended'].rules,
-
     'import-x/no-extraneous-dependencies': [
       'error',
       {
@@ -399,6 +402,7 @@ export const jest = defineConfig(jestPlugin.configs['flat/recommended'], {
 
     'jest/consistent-test-it': ['error', { fn: 'test' }],
     'jest/expect-expect': 'error',
+    'jest/no-commented-out-tests': 'error',
     'jest/no-disabled-tests': 'error',
     'jest/no-duplicate-hooks': 'error',
     'jest/no-test-prefixes': 'error',

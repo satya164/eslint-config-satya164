@@ -11,8 +11,6 @@ The config includes these plugins by default:
 - [jest](https://github.com/jest-community/eslint-plugin-jest)
 - [prettier](https://github.com/prettier/eslint-plugin-prettier)
 - [promise](https://github.com/eslint-community/eslint-plugin-promise)
-- [react-hooks](https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks)
-- [react-hooks](https://reactjs.org/docs/hooks-rules.html)
 - [react](https://github.com/Rel1cx/eslint-react)
 - [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint)
 
