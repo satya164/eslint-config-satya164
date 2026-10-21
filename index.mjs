@@ -38,6 +38,8 @@ export const recommended = defineConfig(
 
     rules: {
       eqeqeq: ['error', 'smart'],
+      radix: 'error',
+      'accessor-pairs': 'error',
       'array-callback-return': 'error',
       'default-case': [
         'error',
@@ -45,6 +47,8 @@ export const recommended = defineConfig(
           commentPattern: '^no default$',
         },
       ],
+      'default-case-last': 'error',
+      'grouped-accessor-pairs': 'error',
       'new-parens': 'error',
       'no-array-constructor': 'error',
       'no-caller': 'error',
@@ -76,14 +80,17 @@ export const recommended = defineConfig(
       'no-loop-func': 'error',
       'no-multi-str': 'error',
       'no-new-func': 'error',
-      'no-new-object': 'error',
       'no-new-wrappers': 'error',
+      'no-object-constructor': 'error',
       'no-octal-escape': 'error',
       'no-octal': 'error',
       'no-promise-executor-return': 'error',
+      'no-proto': 'error',
       'no-redeclare': 'error',
       'no-regex-spaces': 'error',
+      'no-return-assign': 'error',
       'no-self-compare': 'error',
+      'no-sequences': 'error',
       'no-shadow-restricted-names': 'error',
       'no-template-curly-in-string': 'error',
       'no-throw-literal': 'error',
@@ -107,6 +114,7 @@ export const recommended = defineConfig(
       'no-useless-escape': 'error',
       'no-useless-rename': 'error',
       'no-with': 'error',
+      'prefer-promise-reject-errors': 'error',
       'require-atomic-updates': 'error',
       'require-yield': 'error',
       'unicode-bom': 'error',
@@ -131,6 +139,7 @@ export const recommended = defineConfig(
       'import-x/no-duplicates': 'error',
       'import-x/no-empty-named-blocks': 'error',
       'import-x/no-extraneous-dependencies': 'error',
+      'import-x/no-import-module-exports': 'error',
       'import-x/no-named-as-default-member': 'error',
       'import-x/no-named-as-default': 'error',
       'import-x/no-relative-packages': 'error',
@@ -143,6 +152,7 @@ export const recommended = defineConfig(
       'promise/no-nesting': 'error',
       'promise/no-promise-in-callback': 'error',
       'promise/no-return-in-finally': 'error',
+      'promise/spec-only': 'error',
       'promise/valid-params': 'error',
 
       '@typescript-eslint/no-require-import': 'off',
@@ -154,6 +164,8 @@ export const recommended = defineConfig(
     files: ['**/*.{js,jsx,cjs,mjs}'],
 
     rules: {
+      'no-unused-expressions': 'error',
+
       'import-x/default': 'error',
       'import-x/named': 'error',
     },
@@ -186,6 +198,7 @@ export const recommended = defineConfig(
           assertionStyle: 'as',
         },
       ],
+      '@typescript-eslint/no-confusing-non-null-assertion': 'error',
       '@typescript-eslint/no-dynamic-delete': 'error',
       '@typescript-eslint/no-empty-interface': [
         'error',
@@ -195,6 +208,8 @@ export const recommended = defineConfig(
       ],
       '@typescript-eslint/no-extra-non-null-assertion': 'error',
       '@typescript-eslint/no-extraneous-class': 'error',
+      '@typescript-eslint/no-import-type-side-effects': 'error',
+      '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'error',
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -290,6 +305,7 @@ export const react = defineConfig(reactPlugin.configs.recommended, {
     '@eslint-react/no-clone-element': 'off',
     '@eslint-react/no-context-provider': 'off',
     '@eslint-react/no-create-ref': 'off',
+    '@eslint-react/no-duplicate-key': 'error',
     '@eslint-react/no-forward-ref': 'off',
     '@eslint-react/no-missing-component-display-name': 'error',
     '@eslint-react/no-nested-component-definitions': 'error',
@@ -314,6 +330,8 @@ export const react = defineConfig(reactPlugin.configs.recommended, {
     '@eslint-react/dom-no-missing-button-type': 'error',
     '@eslint-react/dom-no-render-return-value': 'error',
     '@eslint-react/dom-no-script-url': 'error',
+    '@eslint-react/dom-no-string-style-prop': 'error',
+    '@eslint-react/dom-no-unknown-property': 'error',
     '@eslint-react/dom-no-unsafe-iframe-sandbox': 'error',
     '@eslint-react/dom-no-void-elements-with-children': 'error',
 
@@ -350,6 +368,14 @@ export const typechecked = defineConfig({
       'error',
       {
         allowConstantLoopConditions: 'only-allowed-literals',
+      },
+    ],
+    '@typescript-eslint/prefer-nullish-coalescing': [
+      'error',
+      {
+        ignoreBooleanCoercion: true,
+        ignoreIfStatements: true,
+        ignoreTernaryTests: true,
       },
     ],
   },
@@ -403,6 +429,7 @@ export const jest = defineConfig({
     'jest/consistent-test-it': ['error', { fn: 'test' }],
     'jest/expect-expect': 'error',
     'jest/no-commented-out-tests': 'error',
+    'jest/no-confusing-set-timeout': 'error',
     'jest/no-disabled-tests': 'error',
     'jest/no-duplicate-hooks': 'error',
     'jest/no-test-prefixes': 'error',
@@ -410,5 +437,6 @@ export const jest = defineConfig({
     'jest/prefer-to-be': 'error',
     'jest/prefer-todo': 'error',
     'jest/require-to-throw-message': 'error',
+    'jest/valid-mock-module-path': 'error',
   },
 });
